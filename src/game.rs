@@ -21,8 +21,8 @@ enum Player {
 impl Player {
     fn color(&self) -> CellState {
         match self {
-            Player::PlayerOne => { CellState::Red },
-            Player::PlayerTwo => { CellState::Black }
+            Player::PlayerOne => CellState::Red,
+            Player::PlayerTwo => CellState::Black
         }
     }
 }
@@ -64,67 +64,59 @@ impl Direction {
 
     fn can_be_applied_to(&self, pos:Position) -> bool {
         match self {
-            Direction::Up => {
+            Direction::Up =>
                 if pos.y == CELLS_HEIGHT - 1 {
                     false
                 } else {
                     true
-                }
-            },
-            Direction::UpLeft => {
+                },
+            Direction::UpLeft =>
                 if pos.y == CELLS_HEIGHT - 1 {
                     false
                 } else if pos.x == 0 {
                     false
                 } else {
                     true
-                }
-            },
-            Direction::UpRight => {
+                },
+            Direction::UpRight =>
                 if pos.y == CELLS_HEIGHT - 1 {
                     false
                 } else if pos.x == CELLS_WIDTH - 1 {
                     false
                 } else {
                     true
-                }
-            },
-            Direction::Right => {
+                },
+            Direction::Right =>
                 if pos.x == CELLS_WIDTH - 1 {
                     false
                 } else {
                     true
                 }
-            }
         }
     }
 
     fn apply_to(&self, pos: Position) -> Position {
         match self {
-            Direction::Up => {
+            Direction::Up => 
                 Position{
                     x: pos.x,
                     y: pos.y + 1
-                }
-            },
-            Direction::UpLeft => {
+                },
+            Direction::UpLeft => 
                 Position{
                     x: pos.x - 1,
                     y: pos.y + 1
-                }
-            },
-            Direction::UpRight => {
+                },
+            Direction::UpRight => 
                 Position{
                     x: pos.x + 1,
                     y: pos.y + 1
-                }
-            },
-            Direction::Right => {
+                },
+            Direction::Right => 
                 Position{
                     x: pos.x + 1,
                     y: pos.y
                 }
-            }
         }
     }
 }
@@ -199,9 +191,9 @@ impl Board {
 
             for cell in row {
                 match cell {
-                    CellState::Empty => { row_contents += "|   " },
-                    CellState::Black => { row_contents += "| O " },
-                    CellState::Red => { row_contents += "| @ " },
+                    CellState::Empty => row_contents += "|   ",
+                    CellState::Black => row_contents += "| O ",
+                    CellState::Red => row_contents += "| @ ",
                 }
             }
 
